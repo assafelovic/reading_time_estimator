@@ -1,5 +1,5 @@
 import bs4
-import urllib, re
+import urllib.request, re
 
 # Words per minute
 WPM = 200
@@ -7,7 +7,7 @@ WORD_LENGTH = 5
 
 # 1
 def extract_text(url):
-	html = urllib.urlopen(url).read()
+	html = urllib.request.urlopen(url).read()
 	soup = bs4.BeautifulSoup(html, 'html.parser')
 	texts = soup.findAll(text=True)
 	return texts
@@ -38,4 +38,4 @@ def estimate_reading_time(url):
 	total_words = count_words_in_text(filtered_text, WORD_LENGTH)
 	return total_words/WPM
 
-print estimate_reading_time("http://www.assafelovic.com/blog/2017/6/27/estimating-an-articles-reading-time")
+print(estimate_reading_time("http://www.assafelovic.com/blog/2017/6/27/estimating-an-articles-reading-time"))
